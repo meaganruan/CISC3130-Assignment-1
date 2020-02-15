@@ -5,9 +5,10 @@ public class A1 {
 
 	public static void main(String[] args) throws IOException {
 
+		// import text file to write out to
+		FileWriter outFile = new FileWriter("C:\\Users\\meaga\\Documents\\CODE\\CISC3130\\OutputForA1.txt");
+		PrintWriter out = new PrintWriter(outFile);
 		// input csv file and read it in through buffered reader
-		// File file = new
-		// File("C:\\Users\\meaga\\Documents\\CODE\\CISC3130\\A1Charts.csv");
 		FileReader fr = new FileReader("C:\\Users\\meaga\\Documents\\CODE\\CISC3130\\A1Charts.csv");
 		BufferedReader reader = new BufferedReader(fr);
 		// create linked lists to access list outside of reader
@@ -28,7 +29,7 @@ public class A1 {
 			artistList.add(artist);
 			String streams = data[3];
 			streamList.add(streams);
-			//String url = data[4];
+			// String url = data[4];
 
 			// System.out.println(position + " : " + artist + " : " + streams);
 		}
@@ -40,22 +41,24 @@ public class A1 {
 		Collections.sort(artistList, String.CASE_INSENSITIVE_ORDER);
 		// remove duplicates in artists
 		LinkedList<String> droppedList = new LinkedList<String>();
-		int j=1;
+		int j = 1;
 		for (int i = 0; i < artistList.size(); i++) {
 			if (artistList.indexOf(j) == artistList.size()) {
 				break;
-			}
-			else if((artistList.get(i)) == (artistList.get(j))){
+			} else if ((artistList.get(i)) == (artistList.get(j))) {
 				droppedList.add(artistList.get(i));
 				j++;
 			}
-			
+
 			else if ((artistList.get(i)) == (artistList.get(j))) {
 				artistList.remove(j);
 			}
 		}
 		System.out.println(artistList);
 		System.out.println(droppedList);
+
+		out.println("The artist who had the most streamed is " + artistList.get(1));
+
 	}
 
 }
