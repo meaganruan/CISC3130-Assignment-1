@@ -1,13 +1,10 @@
 import java.io.*;
-import java.util.*;
+import java.util.*; 
 
 public class A1 {
 
 	public static void main(String[] args) throws IOException {
-
-		// import text file to write out to
-		FileWriter outFile = new FileWriter("C:\\Users\\meaga\\Documents\\CODE\\CISC3130\\OutputForA1.txt");
-		PrintWriter out = new PrintWriter(outFile);
+		
 		// input csv file and read it in through buffered reader
 		FileReader fr = new FileReader("C:\\Users\\meaga\\Documents\\CODE\\CISC3130\\A1Charts.csv");
 		BufferedReader reader = new BufferedReader(fr);
@@ -39,26 +36,20 @@ public class A1 {
 
 		// sort artists in alphabetical order ignoring case
 		Collections.sort(artistList, String.CASE_INSENSITIVE_ORDER);
-		// remove duplicates in artists
-		LinkedList<String> droppedList = new LinkedList<String>();
-		int j = 1;
-		for (int i = 0; i < artistList.size(); i++) {
-			if (artistList.indexOf(j) == artistList.size()) {
-				break;
-			} else if ((artistList.get(i)) == (artistList.get(j))) {
-				droppedList.add(artistList.get(i));
-				j++;
-			}
-
-			else if ((artistList.get(i)) == (artistList.get(j))) {
-				artistList.remove(j);
-			}
-		}
+		
+		// remove duplicates in artists using a hash set
+		Set<String> droppedList = new LinkedHashSet<String>(artistList);
+		//test outputs
 		System.out.println(artistList);
 		System.out.println(droppedList);
-
-		out.println("The artist who had the most streamed is " + artistList.get(1));
-
+		
+		// import text file to write out to
+		FileWriter outFile = new FileWriter("C:\\Users\\meaga\\Documents\\CODE\\CISC3130\\OutputForA1.txt");
+		PrintWriter out = new PrintWriter(outFile);
+		out.println("The artist who had the most streamed is " + artistList.get(1) + '\n');
+		out.println("The artists in alphabetical order (numbers in the front): " + '\n' + droppedList);
+		out.close();
+		
 	}
 
 }
