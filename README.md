@@ -11,3 +11,4 @@ The csv file is already in chronological (most-least) order based on the streams
 Printed outputs into a separate text file.
 
 I chose to use linked lists because it was easier to use since there isn't a fixed size for it.
+To drop duplicates, I made the original artist list as a hash set because it only takes in the first occurring unique values.
